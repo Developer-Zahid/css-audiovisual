@@ -1,0 +1,95 @@
+:root {
+  --color-border-h: 297;
+  --color-border-s: 11%;
+  --color-border-l: 12%;
+  --color-bg: #000000;
+  --color-circle: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: clamp(6px, 1vw, 10px);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  overflow: hidden;
+  padding: 15px;
+}
+
+#audio {
+  display: none;
+}
+
+.circle {
+  position: relative;
+  margin-top: auto;
+  display: grid;
+  place-items: center;
+  width: 55rem;
+  aspect-ratio: 1;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(50% + 10px), 0 calc(50% + 10px));
+          clip-path: polygon(0 0, 100% 0, 100% calc(50% + 10px), 0 calc(50% + 10px));
+}
+.circle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(calc(50% + 4px));
+  height: 4px;
+  border-radius: 4px;
+  background-color: var(--color-circle);
+}
+.circle__item {
+  position: absolute;
+  inset: calc(var(--i) * 2rem);
+  border-radius: 50%;
+  background-color: inherit;
+  border: 0.3rem solid hsl(var(--color-border-h), calc(var(--color-border-s) * var(--i)), calc(var(--color-border-l) * var(--i)));
+  animation: color 8s linear infinite, rotate 8s linear infinite;
+  animation-delay: calc((var(--total) - var(--i)) * 0.1s);
+}
+@keyframes color {
+  0% {
+    --color-border-h: 297;
+  }
+  100% {
+    --color-border-h: 50;
+  }
+}
+@keyframes rotate {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(0.5turn);
+  }
+}
+.circle__item::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateX(-50%) translateY(-50%);
+  width: 1.2rem;
+  aspect-ratio: 1;
+  background-color: var(--color-circle);
+  border-radius: inherit;
+}/*# sourceMappingURL=style.css.map */
